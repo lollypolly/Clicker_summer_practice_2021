@@ -1,0 +1,2 @@
+rootProject.name = "clicker_summer_practice_2021"
+include ':app'
