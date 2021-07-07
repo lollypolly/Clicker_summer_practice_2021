@@ -1,4 +1,4 @@
-package com.example.clicker
+package com.example.studentslife
 
 import org.junit.Test
 
