@@ -20,7 +20,8 @@ class Keys {
 
         val LINER_ID = "liner"
 
-        val COMPANY_ID = "company"  
+        val COMPANY_ID = "company"
+
         val GAME_ID = "computer club "
 
     }
