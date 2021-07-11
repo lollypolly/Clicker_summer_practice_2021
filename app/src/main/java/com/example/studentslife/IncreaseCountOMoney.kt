@@ -103,7 +103,7 @@ class IncreaseCountOfMoney : Service() {
 
                 setNotification()
 
-                sleep(1000)
+                sleep(100000)
             }
         }
     }
