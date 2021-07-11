@@ -18,32 +18,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var sp = getSharedPreferences(Keys.DATA_ABOUT_APP, Context.MODE_PRIVATE)
+        var am = getSharedPreferences(Keys.DATA_ABOUT_APP, Context.MODE_PRIVATE)
 
-        checkSharedPref(sp)
+        checkSharedPref(am)
 
-        startService() // если уже запущен, то повторного запуска не будет(смотреть реализацию)
+        startService()
 
-        getCountOfOil(sp)
+        getCountOfMoney(am)
 
         btnGoToShop.setOnClickListener {
             startActivity(Intent(this, ShopActivity::class.java))
         }
 
         btnClick.setOnClickListener {
-            var counter = sp.getLong(Keys.COUNT_OF_MONEY,0)
-            counter += sp.getLong(Keys.CLICK_INCREASE_MONEY,0)
-            sp.edit().apply {
+            var counter = am.getLong(Keys.COUNT_OF_MONEY,0)
+            counter += am.getLong(Keys.CLICK_INCREASE_MONEY,0)
+            am.edit().apply {
                 putLong(Keys.COUNT_OF_MONEY, counter)
                 apply()
             }
-            tvMoneyCounter.text = "${sp.getLong(Keys.COUNT_OF_MONEY,0)}"
+            tvMoneyCounter.text = "${am.getLong(Keys.COUNT_OF_MONEY,0)}"
         }
 
 
     }
 
-    private fun getCountOfOil(sp: SharedPreferences) {
+    private fun getCountOfMoney(sp: SharedPreferences) {
         val timer = Timer()
         timer.schedule(object : TimerTask() {
             override fun run() {
@@ -62,9 +62,9 @@ class MainActivity : AppCompatActivity() {
             })
         }
     }
-    private fun checkSharedPref(sp: SharedPreferences) {
-        if(!sp.contains(Keys.COUNT_OF_MONEY)) {
-            sp.edit().apply {
+    private fun checkSharedPref(am: SharedPreferences) {
+        if(!am.contains(Keys.COUNT_OF_MONEY)) {
+            am.edit().apply {
                 putLong(Keys.COUNT_OF_MONEY,0)
                 putLong(Keys.INCREASE_MONEY,0)
                 putLong(Keys.CLICK_INCREASE_MONEY,1)
