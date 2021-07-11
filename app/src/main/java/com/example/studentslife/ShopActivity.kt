@@ -49,7 +49,7 @@ class ShopActivity : AppCompatActivity() {
                         (1.2.pow(am.getInt(itemActive.id, 0).toDouble()) * itemActive.cost).toInt()
                 }
                 textView.text = am.getInt(itemActive.id,0).toString()
-        })
+            })
 
         rvPassiveImprovements.adapter = TwoAdapter(ItemPassiveName.list, { itemPassive: ItemPassive, textView: TextView ->
             var counter = am.getLong(Keys.COUNT_OF_MONEY,0)
@@ -70,7 +70,7 @@ class ShopActivity : AppCompatActivity() {
             }
         },
             {
-                itemPassive: ItemPassive, textView: TextView ->
+                    itemPassive: ItemPassive, textView: TextView ->
                 var am = getSharedPreferences(Keys.DATA_ABOUT_APP,Context.MODE_PRIVATE)
                 if(ItemPassiveName.getInitialCosts().contains(itemPassive.cost)) {
                     itemPassive.cost = (1.2.pow(
@@ -79,3 +79,23 @@ class ShopActivity : AppCompatActivity() {
                 }
                 textView.text = am.getInt(itemPassive.id, 0).toString()
             })
+
+
+        btnGoToMain.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    private fun getCountOfMoney(am : SharedPreferences) {
+        val timer = Timer()
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                var counter = am.getLong(Keys.COUNT_OF_MONEY,0)
+                runOnUiThread(Runnable {
+                    shopMoneyField.text = "${counter}"
+                })
+            }
+        }, 0, 1100)
+    }
+
+}
