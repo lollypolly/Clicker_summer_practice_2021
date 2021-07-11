@@ -43,11 +43,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getCountOfMoney(sp: SharedPreferences) {
+    private fun getCountOfMoney(am : SharedPreferences) {
         val timer = Timer()
         timer.schedule(object : TimerTask() {
             override fun run() {
-                var counter = sp.getLong(Keys.COUNT_OF_MONEY,0)
+                var counter = am.getLong(Keys.COUNT_OF_MONEY,0)
                 runOnUiThread(Runnable {
                     tvMoneyCounter.text = "${counter}"
                 })
