@@ -59,8 +59,8 @@ class IncreaseCountOfMoney : Service() {
         }
 
         val not = NotificationCompat.Builder(this,CHANNEL_ID)
-            .setContentTitle("Пассивный доход... ${getSharedPreferences(Keys.DATA_ABOUT_APP, Context.MODE_PRIVATE)
-                .getLong(Keys.COUNT_OF_MONEY,0)}")
+            .setContentTitle("У вас уже ${getSharedPreferences(Keys.DATA_ABOUT_APP, Context.MODE_PRIVATE)
+                .getLong(Keys.COUNT_OF_MONEY,0)} долларов!")
             .setSmallIcon(R.drawable.ic_android_black_24dp)
 //            .setVibrate(null)
 //            .setSound(null)
@@ -92,6 +92,7 @@ class IncreaseCountOfMoney : Service() {
         override fun run() {
             super.run()
             var sp = getSharedPreferences(Keys.DATA_ABOUT_APP, Context.MODE_PRIVATE)
+            var passed = 0
             while(mustGo) {
                 var counter = sp.getLong(Keys.COUNT_OF_MONEY,0)
                 counter += sp.getLong(Keys.INCREASE_MONEY,0)
@@ -100,10 +101,16 @@ class IncreaseCountOfMoney : Service() {
                     putLong(Keys.COUNT_OF_MONEY,counter)
                     apply()
                 }
+                if (passed == 0) {
+                    setNotification()
+                    passed++
+                }
+                else if (passed == 60)
+                    passed = 0
+                else
+                    passed++
 
-                setNotification()
-
-                sleep(100000)
+                sleep(1000)
             }
         }
     }

@@ -10,19 +10,32 @@ class Keys {
         val INCREASE_MONEY = "increase" 
 
         val CLICK_INCREASE_MONEY = "click_increase" 
-        val COLLEAGUE_ID = "colleague"
+        val PHONE_ID = "phone"
 
-        val DIPPER_ID = "dipper"
+        val TABLET_ID = "tablet"
 
-        val BOER_ID = "boer"
+        val PC_ID = "pc"
 
-        val MINE_ID = "mine"
+        val SHAVERMA_ID = "shaverma"
 
-        val LINER_ID = "liner"
+        val SHOESREPAIR_ID = "shoes repair"
 
-        val COMPANY_ID = "company"
+        val SHASHLIK_ID = "shashlik"
 
-        val GAME_ID = "computer club "
+        val MAC_ID = "mac"
 
+        val CAMERA_ID = "camera"
+
+        val MICRO_ID = "microphone"
+
+        val CHROMAKEY_ID = "chromakey"
+
+        val SHOPFIVE_ID = "shop five"
+
+        val COMMUNICATIONSSHOP_ID = "communications shop"
+
+        val WAITER_ID = "waiter"
+
+        val BANK_ID = "bank"
     }
 }
